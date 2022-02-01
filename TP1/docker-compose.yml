@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  api:
+    build:
+      ./backend/simple-api-main/simple-api
+    networks:
+      - netfront
+    depends_on:
+      - bdd
+
+  bdd:
+    build:
+      .
+    networks:
+      - netfront
+
+  front:
+    build:
+      ./front
+    ports:
+      - 80:80
+    networks:
+      - netfront
+    depends_on:
+      - api
+networks:
+  netfront:
