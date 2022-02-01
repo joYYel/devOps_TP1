@@ -131,4 +131,17 @@ Relancer tous les conteneurs (ou un)
 sudo docker-compose restart (+ service)
 ```
 
+# Docker compose
+On nomme nos images qui vont être publiées :
+```bash
+docker tag laurinedup/tp1 laurinedup/bdd:1.0
+docker tag laurinedup/tp1 laurinedup/api:1.0
+docker tag laurinedup/tp1 laurinedup/front:1.0
+```
+On les publie :
+```bash
+sudo docker push laurinedup/bdd:1.0
+sudo docker push laurinedup/api:1.0
+sudo docker push laurinedup/front:1.0
+```
 
