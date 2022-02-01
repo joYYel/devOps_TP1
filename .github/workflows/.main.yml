@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           # relative path to the place where source code with Dockerfile is located
-          context: ./TP1/backend/simple-api-main/frontend
+          context: ./TP1/backend/simple-api-main/front
           # Note: tags has to be all lower-case
           tags:
             ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:simple-frontend
