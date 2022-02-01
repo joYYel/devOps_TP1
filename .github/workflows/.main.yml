@@ -20,4 +20,4 @@ enable to setup jdk 11
         #TODO
       #finally build your app with the latest command
         - name: Build and test with Maven
-          run: mvn clean verify
+          run: mvn clean verify --file ./TP1/backend/simple-api-main/simple-api
