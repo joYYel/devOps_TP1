@@ -21,7 +21,7 @@ jobs:
       #finally build your app with the latest command
       - name: Build and test with Maven
         #on spécifie la commande, avec la variable --file pour donner le chemin jusqu'au fichier pom.xml
-        run: mvn clean verify --file ./TP1/backend/simple-api-main/simple-api
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=joYYel_devOps_TP1 -Dsonar.organization=joyyel -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./simple-api/pom.xml
 
   # define job to build and publish docker image
   build-and-push-docker-image:
