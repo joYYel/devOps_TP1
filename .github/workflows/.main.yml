@@ -1,6 +1,7 @@
 name: CI devops 2022 CPE
 on:
   #to begin you want to launch this job in main and develop
+  #on pousse sur la branche master
   push:
     branches: master
   pull_request:
@@ -12,12 +13,14 @@ jobs:
       - uses: actions/checkout@v2.3.3
       #do the same with another action (actions/setup-java@v2) that enable to setup jdk 11
       - name: Set up JDK 11
+        #on précise quelle version de jdk on utilise
         uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'adopt'
       #finally build your app with the latest command
       - name: Build and test with Maven
+        #on spécifie la commande, avec la variable --file pour donner le chemin jusqu'au fichier pom.xml
         run: mvn clean verify --file ./TP1/backend/simple-api-main/simple-api
 
   # define job to build and publish docker image
@@ -37,31 +40,34 @@ jobs:
       - name: Build image and push backend
         uses: docker/build-push-action@v2
         with:
-          # relative path to the place where source code with Dockerfile is located
+          # relative path to the place where backend source code with Dockerfile is located
           context: ./TP1/backend/simple-api-main/simple-api
           # Note: tags has to be all lower-case
+          # donne un nom au conteneur
           tags:
             ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:backend
-          # push action
+          # push action (sur master)
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Build image and push database
         uses: docker/build-push-action@v2
         with:
-          # relative path to the place where source code with Dockerfile is located
+          # relative path to the place where database source code with Dockerfile is located
           context: ./TP1
           tags:
+            # donne un nom au conteneur
             ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:db
-          # push action
+          # push action (sur master)
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Build image and push httpd
         uses: docker/build-push-action@v2
         with:
-          # relative path to the place where source code with Dockerfile is located
+          # relative path to the place where frontend source code with Dockerfile is located
           context: ./TP1/front
           # Note: tags has to be all lower-case
           tags:
+            # donne un nom au conteneur
             ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:simple-frontend
-          # push action
+          # push action sur master
           push: ${{ github.ref == 'refs/heads/master' }}
