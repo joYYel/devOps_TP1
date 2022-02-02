@@ -33,7 +33,7 @@ On sauvegarde les données dans temp/data si destruction du conteneur
 ```bash
 sudo docker run -d --name bd --network net -v /tmp/data:/var/lib/postgresql/data laurinedup/tp1
 ```
-avec *-v machine_hôte:conteneur*
+avec *-v machine_hôte:conteneur* <br/>
 **TEST :**
 On ajoute une donnée via adminer, on stoppe et supprime le conteneur bd puis on le recrée, notre donnée est bien là.
 

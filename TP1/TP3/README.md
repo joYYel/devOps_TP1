@@ -51,4 +51,11 @@ ansible-galaxy init roles/app
 ansible-galaxy init roles/proxy
 ```
 
-Les commentaire sont donc les fichiers main de chacun de ses rôles.
+Les commentaire sont dans les fichiers main de chacun de ces rôles.
+
+# Front
+Après avoir télécharger le front, on modifie le fichier my-httpd.conf afin d'effectuer une redirection selon les URLs : </br>
+- si on interroge l'api, on redirige vers celle-ci (données brutes)
+- on a également dupliqué ces 2 lignes pour rediriger l'utilisateur vers le front si l'URL interrogée était *localhost:80*
+Pour ce faire, on a modifié dans le fichier *.env.production* la variable *VUE_APP_API_URL* pour envoyer sur l'api et non sur le port 8080. </br>
+On a également ajouté dans le fichier *docker-compose* le service du front-main qui a été téléchargé.</br>

@@ -23,5 +23,14 @@ services:
       - netfront
     depends_on:
       - api
+
+  front-main:
+    build:
+      ./devops-front-main
+    networks:
+      - netfront
+    depends_on:
+      - api
+
 networks:
   netfront:
