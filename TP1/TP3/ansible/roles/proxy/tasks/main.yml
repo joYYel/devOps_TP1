@@ -1,0 +1,13 @@
+---
+# tasks file for roles/proxy
+- name: Run HTTPD
+  docker_container:
+    # nom et image du conteneur sur docker hub
+    name: front
+    image: laurinedup/tp-devops-cpe:simple-frontend
+    # accès à l'interface via le port 80
+    ports: 80:80
+    state: started
+    # lancé dans le network frontend (pas d'accès direct à la base de données)
+    networks:
+      - name: frontend

@@ -1,0 +1,17 @@
+---
+# tasks file for roles/database
+# on lance la base de données
+- name: Run Database
+  docker_container:
+    # nom et image du conteneur sur docker hub
+    name: bdd
+    image: laurinedup/tp-devops-cpe:db
+    state: started
+    # variables d'environnements nécessaires pour la connexion
+    env:
+      POSTGRES_DB: db
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+    # lancé dans le network backend (le front n'y aura pas accès)
+    networks:
+      - name: backend

@@ -1,0 +1,15 @@
+---
+# tasks file for roles/app
+- name: Run Backend
+  docker_container:
+    # nom et image du conteneur sur docker hub
+    name: api
+    image: laurinedup/tp-devops-cpe:backend
+    state: started
+    # l'api est accessible sur le port 8080
+    exposed_ports:
+      - 8080
+    # lancé dans les 2 networks pour accéder et être accédé à et depuis la base de données et le frontend
+    networks:
+      - name: backend
+      - name: frontend
