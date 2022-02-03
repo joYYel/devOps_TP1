@@ -1,15 +1,15 @@
-name: Build and Push frontend
+name: Build and Push front main
 on:
   push:
     branches:
       - master
     # to push only on changes in front repo
     paths:
-      - 'TP1/front/**'
+      - 'TP1/devops-front-main/**'
 
 jobs:
   # define job to build and publish frontend docker image
-  build-and-push-docker-image-frontend:
+  build-and-push-docker-image-front-main:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-latest
@@ -23,14 +23,14 @@ jobs:
       - name: Login to DockerHub
         run: docker login -u ${{ secrets.DOCKER_HUB_ID }} -p ${{secrets.DOCKER_HUB_PWD }}
 
-      - name: Build image and push httpd
+      - name: Build image and push frontmain
         uses: docker/build-push-action@v2
         with:
           # relative path to the place where frontend source code with Dockerfile is located
-          context: ./TP1/front
+          context: ./TP1/devops-front-main
           # Note: tags has to be all lower-case
           tags:
             # donne un nom au conteneur
-            ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:simple-frontend
+            ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:frontmain
           # push action sur master
           push: ${{ github.ref == 'refs/heads/master' }}
