@@ -31,6 +31,6 @@ jobs:
           # Note: tags has to be all lower-case
           tags:
             # donne un nom au conteneur
-            ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:frontmain
+            ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:front-main
           # push action sur master
           push: ${{ github.ref == 'refs/heads/master' }}
