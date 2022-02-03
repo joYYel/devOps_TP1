@@ -1,7 +1,6 @@
 name: Test backend
 on:
   #to begin you want to launch this job in main and develop
-  #on pousse sur la branche master
   push:
     branches: master
   pull_request:

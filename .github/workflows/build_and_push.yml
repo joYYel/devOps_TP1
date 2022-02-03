@@ -4,7 +4,7 @@ on:
     workflows: [Test backend]
     types: [completed]
     branches:
-      - main
+      - master
 
 jobs:
   # define job to build and publish backend docker image
