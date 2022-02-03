@@ -10,7 +10,6 @@ on:
 jobs:
   # define job to build and publish frontend docker image
   build-and-push-docker-image-frontend:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-latest
     # steps to perform in job
