@@ -1,0 +1,11 @@
+---
+# tasks file for roles/front
+- name: Run Front
+  docker_container:
+    # nom et image du conteneur sur docker hub
+    name: front-main
+    image: laurinedup/tp-devops-cpe:front-main
+    state: started
+    # lancé dans le network frontend
+    networks:
+      - name: frontend
