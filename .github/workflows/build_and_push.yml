@@ -37,8 +37,6 @@ jobs:
           # push action (sur master)
           push: ${{ github.ref == 'refs/heads/master' }}
 
-
-jobs:
   # define job to build and publish database docker image
   build-and-push-docker-image-database:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -68,7 +66,6 @@ jobs:
           # push action (sur master)
           push: ${{ github.ref == 'refs/heads/master' }}
 
-jobs:
   # define job to build and publish frontend docker image
   build-and-push-docker-image-frontend:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
