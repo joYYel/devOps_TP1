@@ -1,0 +1,46 @@
+name: Build and Push DB
+on:
+  workflow_run:
+    workflows: [Test backend]
+    types: [completed]
+    push:
+      branches:
+        - master
+      # to push only on changes in db repo
+      paths:
+        - 'TP1/docker-entrypoint-initdb.d/**'
+        - 'TP1/**'
+      paths-ignore:
+        - 'TP1/backend/**'
+        - 'TP1/devops-front-main/**'
+        - 'TP1/front/**'
+        - 'TP1/TP2/**'
+        - 'TP1/TP3/**'
+        - 'TP1/TP2/**'
+
+jobs:
+  # define job to build and publish database docker image
+  build-and-push-docker-image-database:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # run only when code is compiling and tests are passing
+    runs-on: ubuntu-latest
+
+    # steps to perform in job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # login to docker
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKER_HUB_ID }} -p ${{secrets.DOCKER_HUB_PWD }}
+
+      - name: Build image and push database
+        uses: docker/build-push-action@v2
+        with:
+          # relative path to the place where database source code with Dockerfile is located
+          context: ./TP1
+          tags:
+            # donne un nom au conteneur
+            ${{secrets.DOCKER_HUB_ID}}/tp-devops-cpe:db
+          # push action (sur master)
+          push: ${{ github.ref == 'refs/heads/master' }}
