@@ -15,7 +15,7 @@ jobs:
     on:
       push:
         paths:
-          - './TP1/backend'
+          - 'TP1/backend/**'
     # steps to perform in job
     steps:
       - name: Checkout code
@@ -45,7 +45,16 @@ jobs:
     on:
       push:
         paths:
-          - './TP1'
+          - 'TP1/docker-entrypoint-initdb.d/**'
+          - 'TP1/**'
+        paths-ignore:
+          - 'TP1/backend/**'
+          - 'TP1/devops-front-main/**'
+          - 'TP1/front/**'
+          - 'TP1/TP2/**'
+          - 'TP1/TP3/**'
+          - 'TP1/TP2/**'
+
     # steps to perform in job
     steps:
       - name: Checkout code
@@ -75,7 +84,7 @@ jobs:
     on:
       push:
         paths:
-          - './TP1/front'
+          - 'TP1/front/**'
 
     steps:
       - name: Checkout code
