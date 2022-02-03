@@ -4,9 +4,6 @@ on:
     branches:
       - master
     # to push only on changes in db repo
-    paths:
-      - 'TP1/docker-entrypoint-initdb.d/**'
-      - 'TP1/**'
     paths-ignore:
       - 'TP1/backend/**'
       - 'TP1/devops-front-main/**'
