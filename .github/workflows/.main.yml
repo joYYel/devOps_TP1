@@ -3,8 +3,8 @@ on:
   #to begin you want to launch this job in main and develop
   push:
     branches: master
-  paths:
-    - 'TP1/backend/**'
+    paths:
+      - 'TP1/backend/**'
   pull_request:
 env:
   GITHUB_TOKEN: $(secrets.GITHUB_TOKEN)
